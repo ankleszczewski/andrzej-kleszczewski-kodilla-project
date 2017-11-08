@@ -6,6 +6,7 @@ goto fail
 
 :openURL
 start http://localhost:8080/crud/v1/task/getTasks
+goto end
 
 :fail
 echo.
