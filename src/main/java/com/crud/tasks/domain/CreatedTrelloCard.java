@@ -11,8 +11,16 @@ import lombok.Getter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CreatedTrelloCard {
 
+    @JsonProperty("id")
     private String id;
+
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("badges")
     private Badges badges;
+
+    @JsonProperty("shortUrl")
     private String shorturl;
+
 }
