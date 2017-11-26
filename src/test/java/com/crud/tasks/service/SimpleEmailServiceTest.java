@@ -29,12 +29,14 @@ public class SimpleEmailServiceTest {
         //Given
         Mail mail = new Mail("test@test.com", "Test subject", "Test message", "");
 
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(mail.getMailTo());
-        mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());
-        Optional.ofNullable(mail.getToCc())
-                .ifPresent(c ->mailMessage.setCc(mail.getToCc()));
+       // SimpleMailMessage mailMessage = new SimpleMailMessage();
+        //mailMessage.setTo(mail.getMailTo());
+        //mailMessage.setSubject(mail.getSubject());
+        //mailMessage.setText(mail.getMessage());
+        //Optional.ofNullable(mail.getToCc())
+                //.ifPresent(c ->mailMessage.setCc(mail.getToCc()));
+
+        SimpleMailMessage mailMessage = simpleEmailService.createMailMessage(mail);
 
         //When
         simpleEmailService.send(mail);
