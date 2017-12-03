@@ -22,28 +22,30 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TrelloFacadeTestSuite {
+public class TrelloFacadeTest {
     @InjectMocks
     private TrelloFacade trelloFacade;
+
     @Mock
     private TrelloService trelloService;
+
     @Mock
     private TrelloValidator trelloValidator;
+
     @Mock
     private TrelloMapper trelloMapper;
-
 
     @Test
     public void shouldFetchEmptyList() {
         //Given
         List<TrelloListDto> trelloLists = new ArrayList<>();
-        trelloLists.add(new TrelloListDto("1", "test", false));
+        trelloLists.add(new TrelloListDto("1", "test_list", false));
 
         List<TrelloBoardDto> trelloBoards = new ArrayList<>();
         trelloBoards.add(new TrelloBoardDto("1", "test", trelloLists));
 
         List<TrelloList> mappedTrelloLists = new ArrayList<>();
-        mappedTrelloLists.add(new TrelloList("1", "test", false));
+        mappedTrelloLists.add(new TrelloList("1", "test_list", false));
 
         List<TrelloBoard> mappedTrelloBoards = new ArrayList<>();
         mappedTrelloBoards.add(new TrelloBoard("1", "test", mappedTrelloLists));
@@ -65,16 +67,16 @@ public class TrelloFacadeTestSuite {
     public void shouldFetchTrelloBoards() {
         //Given
         List<TrelloListDto> trelloLists = new ArrayList<>();
-        trelloLists.add(new TrelloListDto("1", "list", false));
+        trelloLists.add(new TrelloListDto("1", "my_list", false));
 
         List<TrelloBoardDto> trelloBoards = new ArrayList<>();
-        trelloBoards.add(new TrelloBoardDto("1", "board", trelloLists));
+        trelloBoards.add(new TrelloBoardDto("my_task", "1", trelloLists));
 
         List<TrelloList> mappedTrelloLists = new ArrayList<>();
-        mappedTrelloLists.add(new TrelloList("1", "list", false));
+        mappedTrelloLists.add(new TrelloList("1", "my_list", false));
 
         List<TrelloBoard> mappedTrelloBoards = new ArrayList<>();
-        mappedTrelloBoards.add(new TrelloBoard("1", "board", mappedTrelloLists));
+        mappedTrelloBoards.add(new TrelloBoard("1", "my_task", mappedTrelloLists));
 
         when(trelloService.fetchTrelloBoards()).thenReturn(trelloBoards);
         when(trelloMapper.mapToBoards(trelloBoards)).thenReturn(mappedTrelloBoards);
@@ -82,10 +84,21 @@ public class TrelloFacadeTestSuite {
         when(trelloValidator.validateTrelloBoards(mappedTrelloBoards)).thenReturn(mappedTrelloBoards);
 
         //When
-        List<TrelloBoardDto> trelloBoardDtos = trelloFacade.fetchTrelloBoards();
+        List<TrelloBoardDto> trelloBoardsDtos = trelloFacade.fetchTrelloBoards();
 
         //Then
-        assertNotNull(trelloBoardDtos);
-        assertEquals(1, trelloBoardDtos.size());
+        assertNotNull(trelloBoardsDtos);
+        assertEquals(1, trelloBoardsDtos.size());
+
+        trelloBoardsDtos.forEach(trelloBoardDto -> {
+            assertEquals("1", trelloBoardDto.getId());
+            assertEquals("my_task", trelloBoardDto.getName());
+
+            trelloBoardDto.getLists().forEach(trelloListDto -> {
+                assertEquals("1", trelloListDto.getId());
+                assertEquals("my_list", trelloListDto.getName());
+                assertEquals(false, trelloListDto.isClosed());
+            });
+        });
     }
 }
