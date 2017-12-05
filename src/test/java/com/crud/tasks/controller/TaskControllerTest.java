@@ -1,12 +1,8 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.*;
-import com.crud.tasks.domain.badges.AttachmentsByType;
-import com.crud.tasks.domain.badges.Badges;
-import com.crud.tasks.domain.badges.Trello;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
-import com.crud.tasks.trello.facade.TrelloFacade;
 import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
