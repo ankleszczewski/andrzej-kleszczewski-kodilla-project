@@ -12,7 +12,7 @@ public class Badges {
     @JsonProperty("votes")
     private int votes;
 
-    @JsonProperty("attachments")
+    @JsonProperty("attachmentsByType")
     private AttachmentsByType attachments;
 
 }
