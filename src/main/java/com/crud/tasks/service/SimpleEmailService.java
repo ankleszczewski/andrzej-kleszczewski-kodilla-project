@@ -33,8 +33,6 @@ public class SimpleEmailService {
         };
     }
 
-
-
     public void send(final Mail mail) {
         LOGGER.info("Starting email preparation...");
         try {
