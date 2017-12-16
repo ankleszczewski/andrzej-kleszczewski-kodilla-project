@@ -35,22 +35,21 @@ public class SimpleEmailService {
 
 
 
-    public void send(Mail mail) {
-        LOGGER.info("Starting mail preparation...");
+    public void send(final Mail mail) {
+        LOGGER.info("Starting email preparation...");
         try {
-            SimpleMailMessage mailMessage = createMailMessage(mail);
-            javaMailSender.send(mailMessage);
-            LOGGER.info("Mail has been sent");
+            javaMailSender.send(createMimeMessage(mail));
+            LOGGER.info("Email has been sent.");
         } catch (MailException e) {
-            LOGGER.error("Failed to process mail sending: ", e.getMessage(), e);
+            LOGGER.error("Failed to process email sending: ", e.getMessage(), e);
         }
     }
 
-    SimpleMailMessage createMailMessage(final Mail mail) {
+    private SimpleMailMessage createMailMessage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());
+        mailMessage.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()));
 
         Optional.ofNullable(mail.getToCc())
                 .ifPresent(c ->mailMessage.setCc(mail.getToCc()));
