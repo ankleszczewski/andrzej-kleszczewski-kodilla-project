@@ -16,6 +16,6 @@ public class AdminConfig {
     @Value("${company.name}")
     private String companyName;
 
-    @Value("&{company.gual}")
+    @Value("&{company.goal}")
     private String companyGoal;
 }
