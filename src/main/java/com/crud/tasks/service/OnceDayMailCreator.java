@@ -36,7 +36,7 @@ public class OnceDayMailCreator implements MailBuilder {
         context.setVariable("company_mail", adminConfig.getCompanyMail());
         context.setVariable("goodbye_message", "Goodbye!");
         context.setVariable("preview_message", "Your tasks");
-        context.setVariable("show_button", false);
+        context.setVariable("show_button", true);
         context.setVariable("is_friend", false);
         context.setVariable("admin_config", adminConfig);
         context.setVariable("application_functionality", functionality);
