@@ -24,7 +24,6 @@ public class EmailScheduler {
     @Autowired
     private AdminConfig adminConfig;
 
-
     @Autowired
     private OnceDayMailCreator onceDayMailCreator;
 
