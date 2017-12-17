@@ -37,7 +37,7 @@ public class MailCreatorService {
         context.setVariable("company_goal", adminConfig.getCompanyGoal());
         context.setVariable("company_mail", adminConfig.getCompanyMail());
         context.setVariable("goodbye_message", "Goodbye!");
-        context.setVariable("preview_message", "Preview");
+        context.setVariable("preview_message", "Your tasks");
         context.setVariable("show_button", false);
         context.setVariable("is_friend", false);
         context.setVariable("admin_config", adminConfig);
