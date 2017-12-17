@@ -15,9 +15,6 @@ public class MailCreatorService {
     private AdminConfig adminConfig;
 
     @Autowired
-    private CompanyConfig companyConfig;
-
-    @Autowired
     @Qualifier("templateEngine")
     private TemplateEngine templateEngine;
 
@@ -27,8 +24,8 @@ public class MailCreatorService {
         context.setVariable("tasks_url", "http://localhost:8888/crud");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
-        context.setVariable("company_name", companyConfig.getCompanyName());
-        context.setVariable("company_goal", companyConfig.getCompanyGoal());
+        context.setVariable("company_name", adminConfig.getCompanyName());
+        context.setVariable("company_goal", adminConfig.getCompanyGoal());
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 }
