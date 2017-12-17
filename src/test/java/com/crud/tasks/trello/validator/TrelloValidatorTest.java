@@ -8,6 +8,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 public class TrelloValidatorTest {
@@ -18,8 +20,8 @@ public class TrelloValidatorTest {
         TrelloValidator trelloValidator = new TrelloValidator();
 
         List<TrelloList> trelloLists = new ArrayList<>();
-        TrelloBoard board1 = new TrelloBoard("1", "name", trelloLists);
-        TrelloBoard board2 = new TrelloBoard("2", "test", trelloLists);
+        TrelloBoard board1 = new TrelloBoard("1", "test", trelloLists);
+        TrelloBoard board2 = new TrelloBoard("2", "name", trelloLists);
         List<TrelloBoard> trelloBoards = new ArrayList<>();
         trelloBoards.add(board1);
         trelloBoards.add(board2);
@@ -27,6 +29,7 @@ public class TrelloValidatorTest {
         List<TrelloBoard> validatedTrelloBoards = trelloValidator.validateTrelloBoards(trelloBoards);
         //Then
         assertEquals(1, validatedTrelloBoards.size());
-        assertEquals("test", validatedTrelloBoards.get(0).getName());
+        assertFalse(validatedTrelloBoards.contains(board1));
+        assertTrue(validatedTrelloBoards.contains(board2));
     }
 }

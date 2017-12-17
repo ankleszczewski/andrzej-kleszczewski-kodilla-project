@@ -62,7 +62,7 @@ public class TrelloServiceTest {
 
         when(trelloClient.createNewCard(trelloCardDto)).thenReturn(createdTrelloCardDto);
         //when
-        CreatedTrelloCardDto testCreatedTrelloCardDto = trelloService.createTrelloCard(trelloCardDto);
+        CreatedTrelloCardDto testCreatedTrelloCardDto = trelloService.createdTrelloCard(trelloCardDto);
         //Then
         assertEquals("1", testCreatedTrelloCardDto.getId());
         assertEquals("name", testCreatedTrelloCardDto.getName());

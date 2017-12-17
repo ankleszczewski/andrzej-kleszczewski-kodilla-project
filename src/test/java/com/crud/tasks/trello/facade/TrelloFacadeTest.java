@@ -115,7 +115,7 @@ public class TrelloFacadeTest {
                 "name", "desc", "pos", "1");
         TrelloCard trelloCard = new TrelloCard("name", "desc", "pos", "2");
 
-        when(trelloService.createTrelloCard(trelloCardDto)).thenReturn(createdTrelloCardDto);
+        when(trelloService.createdTrelloCard(trelloCardDto)).thenReturn(createdTrelloCardDto);
         when(trelloMapper.mapToCard(trelloCardDto)).thenReturn(trelloCard);
         when(trelloMapper.mapToCardDto(trelloCard)).thenReturn(trelloCardDto);
         doNothing().when(trelloValidator).validateCard(trelloCard);
