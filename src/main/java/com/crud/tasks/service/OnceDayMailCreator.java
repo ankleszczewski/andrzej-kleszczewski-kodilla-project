@@ -31,10 +31,13 @@ public class OnceDayMailCreator implements MailBuilder {
         context.setVariable("tasks_url", "https://ankleszczewski.github.io/");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
+        context.setVariable("company_name", adminConfig.getCompanyName());
+        context.setVariable("company_goal", adminConfig.getCompanyGoal());
+        context.setVariable("company_mail", adminConfig.getCompanyMail());
         context.setVariable("goodbye_message", "Goodbye!");
         context.setVariable("preview_message", "Your tasks");
-        context.setVariable("show_button", true);
-        context.setVariable("is_friend", true);
+        context.setVariable("show_button", false);
+        context.setVariable("is_friend", false);
         context.setVariable("admin_config", adminConfig);
         context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/once-a-day-mail", context);

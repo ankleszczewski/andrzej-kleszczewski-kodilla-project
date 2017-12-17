@@ -21,8 +21,6 @@ public class SimpleEmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    @Autowired
-    private MailCreatorService mailCreatorService;
 
     private MimeMessagePreparator createMimeMessage(final Mail mail, final MailBuilder mailBuilder) {
         return mimeMessage -> {
