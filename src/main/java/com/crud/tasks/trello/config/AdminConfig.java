@@ -12,10 +12,4 @@ public class AdminConfig {
 
     @Value("${admin.name}")
     private String adminName;
-
-    @Value("${company.name}")
-    private String companyName;
-
-    @Value("&{company.goal}")
-    private String companyGoal;
 }
